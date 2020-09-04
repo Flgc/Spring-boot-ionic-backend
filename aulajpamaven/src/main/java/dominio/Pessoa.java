@@ -7,13 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity	//Mapeamento correspondente a uma tabela	
+@Entity	// Mapeamento correspondente a uma tabela	
 public class Pessoa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	//generated key automatic
-	private Integer id;		//primary key
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	// generated key automatic
+	private Integer id;		// primary key
 	private String nome;
 	private String email;
 	

@@ -16,7 +16,7 @@ public class Programa {
 		 * Pessoa p3 = new Pessoa(null, "Ana Maria", "ana@gmail.com");
 		 */		
 		
-		//Instancia as propriedades passadas no persistence.xml
+		// Instancia as propriedades passadas no persistence.xml
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
 		
 		//Instancia em com o emf realizando a conexao com o banco de dados
@@ -33,16 +33,14 @@ public class Programa {
 		//Função que busca pelo ID
 		
 		Pessoa p = em.find(Pessoa.class, 4);
-		
 		System.out.println(p);
 		
 		
-		//Realizando remoção no banco de dados após monitorar os dados com o Find
+		// Realizando remoção no banco de dados após monitorar os dados com o Find
 		
 		em.getTransaction().begin();
 		em.remove(p);
 		em.getTransaction().commit();
-		
 		System.out.println("Terminado!");
 		
 		em.close();
