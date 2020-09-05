@@ -13,7 +13,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 
-	<!-- Dependência Hibernet mavem -->
+	<!-- Dependência Hibernet Mavem -->
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
