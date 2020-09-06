@@ -2,9 +2,18 @@ package biz.fabiotecnico1.cursomc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity													//Anotação do pacote JPA para conversão do objeto relacional
 public class Categoria implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	// Define estratégia para geração automática das chaves primárias
 	private Integer id;
 	private String nome;
 	
