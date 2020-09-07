@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import biz.fabiotecnico1.cursomc.domain.Categoria;
+import biz.fabiotecnico1.cursomc.domain.Cidade;
+import biz.fabiotecnico1.cursomc.domain.Estado;
 import biz.fabiotecnico1.cursomc.domain.Produto;
 import biz.fabiotecnico1.cursomc.repositories.CategoriaRepository;
+import biz.fabiotecnico1.cursomc.repositories.CidadeRepository;
+import biz.fabiotecnico1.cursomc.repositories.EstadoRepository;
 import biz.fabiotecnico1.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,6 +24,12 @@ public class CursomcApplication implements CommandLineRunner{	//CommandLineRunne
 	
 	@Autowired
 	private ProdutoRepository produtoRepository; 			//Injeção de dependência do repositório de produtos
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepositoryd;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -46,6 +56,19 @@ public class CursomcApplication implements CommandLineRunner{	//CommandLineRunne
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));	//Operação para salvar um ou uma lista de objeto - categoria
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3)); 	//Operação para salvar um ou uma lista de objeto - produto
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		Cidade cid1 = new Cidade(null, "Uberlândia", est1);
+		Cidade cid2 = new Cidade(null, "São Paulo", est2);
+		Cidade cid3 = new Cidade(null, "Campinas", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(cid1));
+		est2.getCidades().addAll(Arrays.asList(cid2, cid3));
+		
+		estadoRepositoryd.saveAll(Arrays.asList(est1, est2));		//Operação para salvar um ou uma lista de objeto - estado
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));	//Operação para salvar um ou uma lista de objeto - cidade
 			
 	}
 }
