@@ -1,11 +1,14 @@
 package biz.fabiotecnico1.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity													//Anotação do pacote JPA para conversão do objeto relacional
 public class Categoria implements Serializable{
@@ -17,11 +20,15 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	public Categoria() {							//Constutor sem atributos
+	@ManyToMany(mappedBy = "categorias")				//JPA - relacionamento instanciado na lista da associação do produto
+	private List<Produto> produtos = new ArrayList<>();	//Associação da categoria com o produto
+	
+	public Categoria() {							//Constutor sem parâmetros
 	}
 
 	// Generated Constructor using field
-	public Categoria(Integer id, String nome) {		//Construtor com atributo
+	public Categoria(Integer id, String nome) {		//Construtor com parâmetros
+		super();
 		this.id = id;
 		this.nome = nome;
 	}
@@ -41,6 +48,14 @@ public class Categoria implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 	
 	//Generated hashCode and equals
@@ -68,10 +83,5 @@ public class Categoria implements Serializable{
 			return false;
 		return true;
 	}
-
-	
-	
-	
-	
 
 }
