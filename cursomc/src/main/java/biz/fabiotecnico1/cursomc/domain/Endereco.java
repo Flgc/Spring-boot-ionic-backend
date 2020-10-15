@@ -16,7 +16,7 @@ public class Endereco implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// Define estratégia para geração automática das chaves primárias
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String logradouro;
 	private String numero;
@@ -25,18 +25,17 @@ public class Endereco implements Serializable{
 	private String cep;
 	
 	@JsonBackReference
-	@ManyToOne						 			//Associação muitos para um
-	@JoinColumn(name="cliente_id")				//Nome da chave estrangeira na tabela cliente
+	@ManyToOne						 			
+	@JoinColumn(name="cliente_id")				
 	private Cliente cliente;
 	
-	@ManyToOne						 			//Associação muitos para um
-	@JoinColumn(name="cidade_id")				//Nome da chave estrangeira na tabela cidade
+	@ManyToOne						 			
+	@JoinColumn(name="cidade_id")				
 	private Cidade cidade;
 	
 	public Endereco() {
 	}
 
-	// Generated Constructor using field
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cliente cliente, Cidade cidade) {
 		super();
@@ -49,7 +48,6 @@ public class Endereco implements Serializable{
 		this.cliente = cliente;
 	}
 
-	// Generated Getters and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -114,7 +112,6 @@ public class Endereco implements Serializable{
 		this.cidade = cidade;
 	}
 
-	//Generated hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -139,6 +136,5 @@ public class Endereco implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 }

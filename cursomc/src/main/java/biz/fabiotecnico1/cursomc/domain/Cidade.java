@@ -16,27 +16,24 @@ public class Cidade implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// Define estratégia para geração automática das chaves primárias
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
 	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name="estado_id") //Nome chave estrangeira
+	@JoinColumn(name="estado_id")
 	private Estado estado;
 	
 	public Cidade() {
 	}
 
-	// Generated Constructor using field
 	public Cidade(Integer id, String nome, Estado estado) {
 		this.id = id;
 		this.nome = nome;
 		this.estado = estado;
 	}
 
-
-	// Generated Getters and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -61,7 +58,6 @@ public class Cidade implements Serializable{
 		this.estado = estado;
 	}
 
-	//Generated hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,8 +82,5 @@ public class Cidade implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-
 	
 }

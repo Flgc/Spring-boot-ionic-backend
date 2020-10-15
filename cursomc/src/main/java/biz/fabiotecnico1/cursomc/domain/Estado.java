@@ -17,7 +17,7 @@ public class Estado implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// Define estratégia para geração automática das chaves primárias
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	private String nome;
 	
@@ -28,7 +28,6 @@ public class Estado implements Serializable{
 	public Estado() {
 	}
 
-	// Generated Constructor using field
 	public Estado(Integer id, String nome) {
 		super();
 		this.id = id;
@@ -36,7 +35,6 @@ public class Estado implements Serializable{
 	}
 
 	
-	// Generated Getters and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -63,7 +61,6 @@ public class Estado implements Serializable{
 	}
 
 	
-	//Generated hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;

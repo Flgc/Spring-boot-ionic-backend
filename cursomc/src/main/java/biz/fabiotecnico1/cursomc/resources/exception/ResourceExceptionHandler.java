@@ -12,9 +12,7 @@ import biz.fabiotecnico1.cursomc.services.exceptions.ObjectNotFoundException;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 	
-	//Padrão do controllerAdvice - Assinatura padrão do framework
-	
-	@ExceptionHandler(ObjectNotFoundException.class) //Indica que é um tratador de exceções
+	@ExceptionHandler(ObjectNotFoundException.class) 
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request){
 		
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());

@@ -12,15 +12,15 @@ import biz.fabiotecnico1.cursomc.services.exceptions.ObjectNotFoundException;
 @Service
 public class ClienteService {
 	
-	@Autowired						//Dependência será instânciada automaticamente (injeção de dependencia ou inversão de controlhe)
+	@Autowired						
 	private ClienteRepository repo;
 	
-	public Cliente find(Integer id) {				// Recebe Id como parâmetro
+	public Cliente find(Integer id) {				
 		
-		Optional<Cliente> obj = repo.findById(id);	// Procura pelo Id e guarda o resultado no obj
+		Optional<Cliente> obj = repo.findById(id);	
 		
-		return obj.orElseThrow(()-> new ObjectNotFoundException( //Função "lambda" que não recebe argumento
-				"Objeto não encontrado! Id: " + id + ", Tipo: "  //Retornará exceção personalizada caso  obj não exista
+		return obj.orElseThrow(()-> new ObjectNotFoundException( 
+				"Objeto não encontrado! Id: " + id + ", Tipo: "  
 				+ Cliente.class.getName()));
 	}
 }

@@ -19,25 +19,24 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// JPA - Define estratégia para geração automática das chaves primárias
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	private String nome;
 	private Double preco;
 	
-	@JsonBackReference										//Irá omitir a lista de categoria para cada produto
-	@ManyToMany												//JPA - Anotação de relacionamento muitos para muitos
-	@JoinTable(name = "PRODUTO_CATEGORIA",  				//Cria a tebela muitos para muitos com o Nome informado
-	joinColumns = @JoinColumn(name = "produto_id"),			//Informa o campo da chave estranjeira na tabela
-	inverseJoinColumns= @JoinColumn(name = "categoria_id") 	//Nome da outra chave estranjeira que refencia a categoria
+	@JsonBackReference										
+	@ManyToMany												
+	@JoinTable(name = "PRODUTO_CATEGORIA",  				
+	joinColumns = @JoinColumn(name = "produto_id"),			
+	inverseJoinColumns= @JoinColumn(name = "categoria_id") 	
 	)
 	
-	private List<Categoria> categorias = new ArrayList<>();	//Associação do produto com a categoria
+	private List<Categoria> categorias = new ArrayList<>();	
 	
-	public Produto() {										//Constutor sem parâmetros
+	public Produto() {										
 	}
 
-	// Generated Constructor using field
-	public Produto(Integer id, String nome, Double preco) {	//Construtor com parâmetros
+	public Produto(Integer id, String nome, Double preco) {	
 		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
@@ -76,7 +75,6 @@ public class Produto implements Serializable {
 		this.categorias = categorias;
 	}
 
-	//Generated hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;

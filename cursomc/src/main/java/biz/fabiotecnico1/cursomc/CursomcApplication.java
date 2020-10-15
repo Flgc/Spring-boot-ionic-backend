@@ -1,5 +1,6 @@
 package biz.fabiotecnico1.cursomc;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,42 +13,48 @@ import biz.fabiotecnico1.cursomc.domain.Cidade;
 import biz.fabiotecnico1.cursomc.domain.Cliente;
 import biz.fabiotecnico1.cursomc.domain.Endereco;
 import biz.fabiotecnico1.cursomc.domain.Estado;
+import biz.fabiotecnico1.cursomc.domain.Pagamento;
+import biz.fabiotecnico1.cursomc.domain.PagamentoComBoleto;
+import biz.fabiotecnico1.cursomc.domain.PagamentoComCartao;
+import biz.fabiotecnico1.cursomc.domain.Pedido;
 import biz.fabiotecnico1.cursomc.domain.Produto;
+import biz.fabiotecnico1.cursomc.domain.emums.EstadoPagamento;
 import biz.fabiotecnico1.cursomc.domain.emums.TipoCliente;
 import biz.fabiotecnico1.cursomc.repositories.CategoriaRepository;
 import biz.fabiotecnico1.cursomc.repositories.CidadeRepository;
 import biz.fabiotecnico1.cursomc.repositories.ClienteRepository;
 import biz.fabiotecnico1.cursomc.repositories.EnderecoRepository;
 import biz.fabiotecnico1.cursomc.repositories.EstadoRepository;
+import biz.fabiotecnico1.cursomc.repositories.PagamentoRepository;
+import biz.fabiotecnico1.cursomc.repositories.PedidoRepository;
 import biz.fabiotecnico1.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
-public class CursomcApplication implements CommandLineRunner{	//CommandLineRunner -> Permite executar uma ação ao inicar a aplicação
+public class CursomcApplication implements CommandLineRunner{	
 
 	@Autowired
-	private CategoriaRepository categoriaRepository;		//Injeção de dependência do repositório de categorias
-	
+	private CategoriaRepository categoriaRepository;		
 	@Autowired
-	private ProdutoRepository produtoRepository; 			//Injeção de dependência do repositório de produtos
-	
+	private ProdutoRepository produtoRepository; 			
 	@Autowired
-	private CidadeRepository cidadeRepository;				//Injeção de dependência do repositório de cidade
-	
+	private CidadeRepository cidadeRepository;				
 	@Autowired
-	private EstadoRepository estadoRepository;				//Injeção de dependência do repositório de estado
-	
+	private EstadoRepository estadoRepository;				
 	@Autowired
-	private ClienteRepository clienteRepository;			//Injeção de dependência do repositório de cliente
-	
+	private ClienteRepository clienteRepository;			
 	@Autowired
-	private EnderecoRepository enderecoRepository;			//Injeção de dependência do repositório de endereco
-	
+	private EnderecoRepository enderecoRepository;	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+		
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
 
 	@Override
-	public void run(String... args) throws Exception { // Auto-generated method stub - assinatura do CommandLineRunner
+	public void run(String... args) throws Exception { 
 		
 		
 		//Hard code Sample - inserted in database
@@ -65,8 +72,8 @@ public class CursomcApplication implements CommandLineRunner{	//CommandLineRunne
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));	//Operação para salvar um ou uma lista de objeto - categoria
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3)); 	//Operação para salvar um ou uma lista de objeto - produto
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));	
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3)); 	
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
@@ -78,8 +85,8 @@ public class CursomcApplication implements CommandLineRunner{	//CommandLineRunne
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
 		
-		estadoRepository.saveAll(Arrays.asList(est1, est2));	//Operação para salvar um ou uma lista de objeto - estado
-		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));	//Operação para salvar um ou uma lista de objeto - cidade
+		estadoRepository.saveAll(Arrays.asList(est1, est2));	
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));	
 		
 		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
 		
@@ -89,8 +96,25 @@ public class CursomcApplication implements CommandLineRunner{	//CommandLineRunne
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c3); 
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
-
-		clienteRepository.saveAll(Arrays.asList(cli1));		//Operação para salvar um ou uma lista de objeto - cliente
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));	//Operação para salvar um ou uma lista de objeto - endereco
+ 
+		clienteRepository.saveAll(Arrays.asList(cli1));		
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pagto1);
+				
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		ped2.setPagamento(pagto2);
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
 	}
 }

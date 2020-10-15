@@ -11,18 +11,18 @@ import biz.fabiotecnico1.cursomc.domain.Categoria;
 import biz.fabiotecnico1.cursomc.services.CategoriaService;
 
 @RestController						
-@RequestMapping(value="/categorias")			//Name do end point rest
+@RequestMapping(value="/categorias")			
 public class CategoriaResource {
 	
 	@Autowired
-	private CategoriaService service;			// Controlador Rest para acessar o serviço
+	private CategoriaService service;			
 	
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)  //Acrescentamos value = "/{id}" para forçar o Id para procura
+	@RequestMapping(value = "/{id}", method=RequestMethod.GET)  
 	
-	public ResponseEntity<?> find(@PathVariable Integer id) {		//Método para retornar uma categoria informado no Id - end point
+	public ResponseEntity<?> find(@PathVariable Integer id) {		
 		
-		Categoria obj = service.find(id);							//Busca no serviço a categoria referente ao Id informado
+		Categoria obj = service.find(id);							
 		
-		return ResponseEntity.ok().body(obj);		//Retorna a resposta HTTP como corpo o objeto obj
+		return ResponseEntity.ok().body(obj);		
 	}
 }

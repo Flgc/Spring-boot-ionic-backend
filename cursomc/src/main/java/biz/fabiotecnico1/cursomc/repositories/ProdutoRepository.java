@@ -7,5 +7,4 @@ import biz.fabiotecnico1.cursomc.domain.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
-	//Realiza operações de acesso a dados no objeto produto
 }

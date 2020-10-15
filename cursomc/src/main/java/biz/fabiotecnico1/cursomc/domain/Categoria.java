@@ -12,31 +12,29 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity													//Anotação do pacote JPA para conversão do objeto relacional
+@Entity													
 public class Categoria implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// Define estratégia para geração automática das chaves primárias
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	private String nome;
 	
-	@JsonManagedReference								//Referencia gerenciada pelo Json - De onde desejo a referência
-	@ManyToMany(mappedBy = "categorias")				//JPA - relacionamento instanciado na lista da associação do produto
-	private List<Produto> produtos = new ArrayList<>();	//Associação da categoria com o produto
+	@JsonManagedReference								
+	@ManyToMany(mappedBy = "categorias")				
+	private List<Produto> produtos = new ArrayList<>();	
 	
-	public Categoria() {							//Constutor sem parâmetros
+	public Categoria() {							
 	}
 
-	// Generated Constructor using field
-	public Categoria(Integer id, String nome) {		//Construtor com parâmetros
+	public Categoria(Integer id, String nome) {		
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
-	// Generated Getters and Setters
 	public Integer getId() {
 		return id;
 	}
@@ -61,7 +59,6 @@ public class Categoria implements Serializable{
 		this.produtos = produtos;
 	}
 	
-	//Generated hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
