@@ -1,4 +1,6 @@
-###### Projeto full stack - Java Spring Boot no Back End e Ionic no front End
+# Projeto full stack - Java Spring Boot no Back End e Ionic no front End
+
+###### Pondo em prática o projeto do curso em full do curso iniciado em 10/09/2020.
 
 ## Visão funcional
 
@@ -23,4 +25,4 @@
 
 ### Modelo conceitual:
 
-![myImage](https://github.com/Flgc/SpringBoot-Udemy/tree/main/cursomc/raw/main/diagrama.png)
+![myImage](https://github.com/Flgc/SpringBoot-Udemy/blob/main/diagrama.png)
