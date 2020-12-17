@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 08-Dez-2020 às 03:56
+-- Tempo de geração: 17-Dez-2020 às 03:09
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.33
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `SpringBootIonicLoja`
+-- Banco de dados: `lojaspringbootionic`
 --
 
 -- --------------------------------------------------------
@@ -87,7 +87,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `cpf_ou_cnpj`, `email`, `nome`, `tipo`) VALUES
-(1, '36378912377', 'maria@gmail.com', 'Maria Silva', 1),
+(1, '36378912377', 'fabiol@gmail.com', 'Fabio Luis', 1),
 (2, '05664178971', 'botoni@gmail.com', 'Barbosa Otoni', 2);
 
 -- --------------------------------------------------------
@@ -427,13 +427,13 @@ ALTER TABLE `cidade`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `estado`
